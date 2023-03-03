@@ -1,5 +1,4 @@
 const { merge } = require('webpack-merge'); // use to merge two different webpack config objects
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const commonConfig = require('./webpack.common');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 const pakageJson = require('../package.json');
@@ -19,9 +18,6 @@ const devConfig = {
                 marketingApp: 'marketing@http://localhost:8081/marketingEntry.js'
             },
             shared: pakageJson.dependencies
-        }),
-        new HtmlWebpackPlugin({
-            template: './public/index.html'
         })
     ]
 }
