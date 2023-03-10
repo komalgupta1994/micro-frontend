@@ -2,7 +2,7 @@ import { mount } from 'authApp/AuthFile';
 import React, { useRef, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
-export default () => {
+export default ({clickSignIn}) => {
     const ref = useRef(null);
     const history = useHistory();
 
@@ -14,7 +14,10 @@ export default () => {
                     history.push(nextPathname);
                 }
             },
-            initialPath: history.location.pathname
+            initialPath: history.location.pathname,
+            onSignIn: () => {
+                clickSignIn();
+            }
         });
         history.listen(onParentnavigate)
     }, []);
