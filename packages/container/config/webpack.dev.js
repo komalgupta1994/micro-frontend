@@ -5,17 +5,21 @@ const pakageJson = require('../package.json');
 
 const devConfig = {
     mode: 'development',
+    output: {
+        publicPath: 'http://localhost:8080/'
+    },
     devServer: {
         port: 8080,
         historyApiFallback: {
-            index: 'index.html'
+            index: '/index.html'
         }
     },
     plugins: [
         new ModuleFederationPlugin({
             name: 'conatiner',
             remotes: {
-                marketingApp: 'marketing@http://localhost:8081/marketingEntry.js'
+                marketingApp: 'marketing@http://localhost:8081/marketingEntry.js',
+                authApp: 'auth@http://localhost:8082/authEntry.js'
             },
             shared: pakageJson.dependencies
         })
